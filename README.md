@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+User Stories
+404: As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+Signup: As an anon I can sign up in the platform so that I can start adding my old clothes I want to sell
+Login: As a user I can login to the platform so that I can see my favorite closets
+Logout: As a user I can logout from the platform so no one else can use it
+Add sell items: As a user I can add an item so that I can sell it
+List of other members: As a user I want to see the other closets so that I can choose one I want to purchase from
+Search other users: As a user I want to search other closets byn catagory 
+Add to favorites: As a user I want to add other users to favorite(or follow) so that I can go back to that users closet.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Backlog
+User profile:
+Sell to Thrice: if you want to sell to thrice we will then refurbish the item and sell it ourselves either as newly designed item or only slightly upgraded.
+Connect with local seamstresses/seamsters/tailors: The ability to connect with Thrice as a seamstress/seamster/tailor and monetize your skills making new items with old clothes. This program will be called Thrickle so(sew) you can make a nickle with Thrice.
+The Thrickle NFT: we will create the Thrickle NFT platform to collect the different patterns that come from the collabs with the Thrickle seamstresses/seamsters/tailors. 
+The Thrickle collection: This collection will be high end do to the high level of skill we have a ranking system and auctions.
 
-In the project directory, you can run:
+see other users profile and their products
+Geo Location:
 
-### `yarn start`
+Client
+Routes
+/ - Homepage
+/auth/signup - Signup form
+/auth/login - Login form
+/product - product list
+/product/create - create a restaurant
+/produtcs/:id - restaurant detail
+/profile/me - my details and products for sale
+404
+Pages
+Home Page (public)
+Sign in Page (anon only)
+Log in Page (anon only)
+Product List Page (public only)
+Product Create (user only)
+Product Detail Page (public only)
+My Profile Page (user only)
+404 Page (public)
+Components
+Product Card component
+Input: product: any
+Output: favorite(productId: string, on: boolean)
+Search component
+Output: change(terms: string)
+IO
+Services
+Auth Service
+auth.login(user)
+auth.signup(user)
+auth.logout()
+auth.me()
+auth.getUser() // synchronous
+Product Service
+product.list()
+product.create(data)
+product.detail(id)
+product.addFavorite(id)
+product.removeFavorite(id)
+Server
+Models
+User model
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+username - String // required
+email - String // required & unique
+password - String // required
+favorites - [ObjectID<Restaurant>]
+Product model
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+writer - ObjectID<User> // required
+title - String // required
+description - String
+price - String
+images - Array
+sold - Number
+views - Number
+API Endpoints/Backend Routes
+GET /auth/me
+POST /auth/signup
+body:
+username
+email
+password
+POST /auth/login
+body:
+username
+password
+POST /auth/logout
+body: (empty)
+POST /user/me/favorite
+body:
+restaurantId
+DELETE /user/me/favorite/:productId
+body: (empty)
+GET /product
+POST /product
+body:
+name
+phone
+address
+GET /product/:id
+Links
+Trello/Kanban
+Link to your trello board or picture of your physical board
 
-### `yarn test`
+Git
+The url to your repository and to your deployed project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Client repository Link 
+https://github.com/consuelaziza/thrice-client
 
-### `yarn build`
+Server repository Link
+https://github.com/consuelaziza/thrice-server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Deploy Link
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Slides
+The url to your presentation slides
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Slides Link

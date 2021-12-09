@@ -33,9 +33,10 @@ function TodoDetail(props) {
 
     return (
         <div>
-            <h1>To Dos Details</h1>
+            <h2>Todo Detail Component</h2>
             <h4>Name: {todoDetail.name}</h4>
             <h4>Desc: {todoDetail.description}</h4>
+            <img src={todoDetail.image} alt='detail' />
             <button>
                 <Link to={`/todo/${todoDetail._id}/edit`} >Edit</Link>
             </button>

@@ -13,7 +13,7 @@ const theme = createTheme();
 
 function AddForm(props){
 
-	const {name} = useContext(UserContext)
+	// const {name} = useContext(UserContext)
 
 	const {btnSubmit} = props
 	return (
@@ -29,7 +29,7 @@ function AddForm(props){
           }}
         >
 		<Typography component="h1" variant="h5">
-            Add To Do
+            Add Item
           </Typography>
 				<Box component="form" onSubmit={btnSubmit} noValidate sx={{ mt: 1 }}>
 					<TextField fullWidth label="name" id="fullWidth" name="name"  type="text" placeholder="Enter name" />	

@@ -146,10 +146,10 @@ function App(){
 
   // Wait for the '/api/user' request to finish so that we know if the user is loggedin or not
   if (fetchingUser) {
-    return <p>Loading user info. . . </p>
+    return <p>Loading user info. . . </p> // https://assets8.lottiefiles.com/private_files/lf30_c4qw34g9.json
   }
 
-  console.log('manishhhhh')
+  console.log('consuela')
 	return (
 		<div>
       
