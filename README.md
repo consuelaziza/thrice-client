@@ -40,15 +40,21 @@ Product Create (user only)
 Product Detail Page (public only)
 My Profile Page (user only)
 404 Page (public)
+
 Components
+
 Product Card component
 Input: product: any
 Output: favorite(productId: string, on: boolean)
 Search component
 Output: change(terms: string)
+
 IO
+
 Services
+
 Auth Service
+
 auth.login(user)
 auth.signup(user)
 auth.logout()
@@ -59,7 +65,9 @@ product.create(data)
 product.detail(id)
 product.addFavorite(id)
 product.removeFavorite(id)
+
 Server
+
 Models
 
 User model
@@ -67,8 +75,7 @@ User model
 username - String // required
 email - String // required & unique
 password - String // required
-favorites - [ObjectID<Product>]
-product - [ObjectID<Product>]
+<!-- favorites - [ObjectID<Product>] backlog -->
 image - String
 
 Product model
@@ -78,9 +85,9 @@ title - String // required
 description - String
 price - Number
 images - Array
-sold - Number
-views - Number
-quantity - String
+category - Number
+brand - Number
+condition - String
 
 API Endpoints/Backend Routes
 
@@ -89,8 +96,8 @@ POST /auth/signup
 
 POST /auth/login
 POST /auth/logout
-POST /user/me/favorite
-DELETE /user/me/favorite/:productId
+POST /user/favorite
+DELETE /user/favorite/:productId
 
 GET /product
 POST /create-product
