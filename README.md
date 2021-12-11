@@ -106,11 +106,13 @@ GET /product/:id
 
 
 Links
-Trello/Kanban
-Link to your trello board or picture of your physical board
+
+Notion
+Link to notion board 
+https://shorthaired-plough-a70.notion.site/f9ecd513295d49f785798e4799baf724?v=de06285b16264c478ea7bb673f56976b
 
 Git
-The url to your repository and to your deployed project
+The url to my repository and to my deployed project
 
 Client repository Link 
 https://github.com/consuelaziza/thrice-client

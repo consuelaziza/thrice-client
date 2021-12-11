@@ -7,7 +7,8 @@ import {UserContext} from './context/app.context';
 import {useState, useEffect, useContext} from 'react';
 import {useNavigate } from 'react-router-dom';
 import Footer from './components/Footer';
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/LandingPage/LandingPage'
+import NavBar from './components/NavBar/NavBar';
 
 
 
@@ -66,6 +67,11 @@ function App(){
     }
   }
 
+  const handleLogout = async () => {
+    await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
+    setUser(null)
+}
+
   /*useEffect(() => {
     navigate('/')
   }, [products])
@@ -78,10 +84,11 @@ function App(){
 
   
 	return (
-   
-		<div>
+   <div>
+    <NavBar onLogout={handleLogout}/>
+		<div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
       
-      <h1>hello</h1>
+      
       <Routes>
       <Route path="/" element={<LandingPage products={products} /> } />
       <Route  path="/signin" element={<SignIn myError={myError} onSignIn={handleSignIn} />}/>
@@ -89,6 +96,7 @@ function App(){
       </Routes>
       <Footer />
 		</div>
+    </div>
     
 	);
 }
