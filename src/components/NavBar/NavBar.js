@@ -3,6 +3,8 @@ import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
 import { Drawer, Button,  } from 'antd';
 import './Sections/Navbar.css';
+import {AlignRightOutlined} from '@ant-design/icons'
+import {Link} from 'react-router-dom'
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -18,7 +20,7 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
-        <a href="/">Logo</a>
+        <Link to="/">Thrice</Link>
       </div>
       <div className="menu__container">
         <div className="menu_left">
@@ -32,10 +34,10 @@ function NavBar() {
           type="primary"
           onClick={showDrawer}
         >
-          {/* <Icon type="align-right" /> */}
+           <AlignRightOutlined /> 
         </Button>
         <Drawer
-          title="Basic Drawer"
+          title="menu"
           placement="right"
           className="menu_drawer"
           closable={false}

@@ -12,11 +12,11 @@ function RightMenu(props) {
 
   if (user) {
     return (
-      <Menu >
-        <Menu.Item key="mail">
+      <Menu mode={props.mode}>
+        <Menu.Item key="signin">
           <Link to="/signin">Signin</Link>
         </Menu.Item>
-        <Menu.Item key="app">
+        <Menu.Item key="signup">
           <Link to="/signup">Signup</Link>
         </Menu.Item>
       </Menu>
@@ -25,25 +25,25 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
 
-        {/* <Menu.Item key="history">
-          <a href="/history">History</a>
+        <Menu.Item key="history">
+          <Link to="/history">History</Link>
         </Menu.Item>
 
         <Menu.Item key="upload">
-          <a href="/product/upload">Upload</a>
-        </Menu.Item> */}
+          <Link to="/product/upload">Upload</Link>
+        </Menu.Item>
 
         <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
-          {/* <Badge count={user && user.userData.cart.length}> */}
-            <a href="/user/cart" style={{ marginRight: -22 , color:'#667777'}}>
+          <Badge count={5}>
+            <Link to="/user/cart" style={{ marginRight: -22 , color:'#667777'}} >
               <ShoppingCartOutlined style={{ fontSize: 30, marginBottom: 3 }}/>
-            </a>
-          {/* </Badge> */}
+            </Link>
+          </Badge>
         </Menu.Item>
 
 
         <Menu.Item key="logout">
-          <a onClick={props.onLogout}>Logout</a>
+          <Link to="/signin" onClick={props.onLogout}>Logout</Link>
         </Menu.Item>
       </Menu>
     )

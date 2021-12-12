@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Axios from 'axios';
+import axios from 'axios';
 import {Col, Card, Row } from 'antd';
-import ImageSlider from '../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import { categories, price } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
+
 
 const { Meta } = Card;
 
@@ -34,7 +34,7 @@ function LandingPage() {
     }, [])
 
     const getProducts = (variables) => {
-        Axios.post('/api/product/getProducts', variables)
+        axios.post('/api/product/getProducts', variables)
             .then(response => {
                 if (response.data.success) {
                     if (variables.loadMore) {
@@ -69,7 +69,7 @@ function LandingPage() {
         return <Col lg={6} md={8} xs={24}>
             <Card
                 hoverable={true}
-                cover={<a href={`/product/${product._id}`} > <ImageSlider images={product.images} /></a>}
+                 cover={<a href={`/product/${product._id}`}>Image</a>}
             >
                 <Meta
                     title={product.title}

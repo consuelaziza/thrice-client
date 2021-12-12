@@ -1,16 +1,15 @@
 import React from 'react'
 
-
-function Footer() {
+function CartPage() {
     return (
         <div style={{
             height: '80px', display: 'flex',
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Happy Thrifting  </p> 
+            <h1>Stripe Coming Soon</h1>
         </div>
     )
 }
 
-export default Footer
+export default CartPage
