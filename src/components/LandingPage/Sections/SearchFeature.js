@@ -8,9 +8,9 @@ function SearchFeature(props) {
     const [SearchTerms, setSearchTerms] = useState("")
 
     const onChangeSearch = (event) => {
-        setSearchTerms(event.currentTarget.value)
+        setSearchTerms(event.target.value)
 
-        props.refreshFunction(event.currentTarget.value)
+        props.refreshFunction(event.target.value)
 
     }
 

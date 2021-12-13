@@ -1,20 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 import { Row, Col } from 'antd';
 import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
+//import {useParams} from 'react-router-dom'
+import {API_URL} from '../../config'
+import { useContext } from 'react';
+import { UserContext } from '../../context/app.context';
+
+
 
 
 
     function DetailProductPage(props) {
-    const productId = props.match.params.productId
+
+    const {user} = useContext(UserContext)
+    const {productId} = props.match.params.productId
     const [Product, setProduct] = useState([])
 
     useEffect(() => {
-        Axios.get(`/api/product/products_by_id?id=${productId}&type=single`)
-            .then(response => {
-                setProduct(response.data[0])
-            })
+        const getData = async () => {
+        let response = await axios.get(`${API_URL}/product/${productId}`,{withCredentials: true})
+                setProduct(response.data)
+            }
+            getData()
 
     }, [])
 
@@ -24,18 +33,18 @@ import ProductInfo from './Sections/ProductInfo';
         <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>{Product.title}</h1>
+                <h1>title</h1>
             </div>
 
             <br />
 
             <Row gutter={[16, 16]} >
                 <Col lg={12} xs={24}>   
-                    <ProductImage detail={Product.image} />
+                    <ProductImage  />
                 </Col>
                 <Col lg={12} xs={24}>
                     <ProductInfo
-                        detail={Product} />
+                         />
                 </Col>
             </Row>
         </div>

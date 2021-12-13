@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Typography, Button, Form, Input} from 'antd';
-import ImageUpload from '../components/utils/ImageUpload'
+import ImageUpload from './ImageUpload'
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -15,6 +16,8 @@ const Categories = [
 
 function UploadItem(props) {
 
+    let navigate = useNavigate()
+
     const [TitleValue, setTitleValue] = useState("")
     const [DescriptionValue, setDescriptionValue] = useState("")
     const [PriceValue, setPriceValue] = useState(0)
@@ -24,25 +27,25 @@ function UploadItem(props) {
 
 
     const onTitleChange = (event) => {
-        setTitleValue(event.currentTarget.value)
+        setTitleValue(event.target.value)
     }
 
     const onDescriptionChange = (event) => {
-        setDescriptionValue(event.currentTarget.value)
+        setDescriptionValue(event.target.value)
     }
 
     const onPriceChange = (event) => {
-        setPriceValue(event.currentTarget.value)
+        setPriceValue(event.target.value)
     }
 
     const onCategoriesSelectChange = (event) => {
-        setCategoriesValue(event.currentTarget.value)
+        setCategoriesValue(event.target.value)
     }
 
     const updateImages = (newImages) => {
         setImages(newImages)
     }
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
 
 
@@ -52,23 +55,21 @@ function UploadItem(props) {
         }
 
         const variables = {
-            writer: props.user.userData._id,
+            
             title: TitleValue,
             description: DescriptionValue,
             price: PriceValue,
             images: Images,
-            continents: CategoriesValue,
+            categories: CategoriesValue,
         }
 
-        axios.post('/api/product/uploadProduct', variables)
-            .then(response => {
-                if (response.data.success) {
-                    alert('Product Successfully Uploaded')
-                    props.history.push('/')
-                } else {
-                    alert('Failed to upload Product')
-                }
-            })
+       let response= await axios.post('{API_URL}/product/create', variables, {withCredentials: true})
+            
+                if (response.success.data) {
+                    
+                    navigate('/')
+                } 
+            
 
     }
 

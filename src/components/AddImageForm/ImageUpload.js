@@ -1,32 +1,37 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone';
-import  Icon  from '@ant-design/icons';
+import  {PlusOutlined}  from '@ant-design/icons';
 import axios from 'axios';
+import {API_URL} from '../../config'
 
 
 function ImageUpload(props) {
 
     const [Images, setImages] = useState([])
 
-    const onDrop = (files) => {
+    const onDrop = async (event) => {
 
-        let formData = new FormData();
-        const config = {
-            header: { 'content-type': 'multipart/form-data' }
+    let imageForm = new FormData()
+      imageForm.append('imageUrl', event.target.myImage.files[0])
+       
+        let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+        console.log(imgResponse.data)
+
+        const variables = {
+            writer: event.target._id,
+            title: event.target.title,
+            description: event.target.description,
+            images: imgResponse.data.images,
+            categories: event.target.categories,
+            price: event.target.price
         }
-        formData.append("file", files[0])
-        //save the image inside the Node Server 
-        axios.post('/api/product/uploadImage', formData, config)
-            .then(response => {
-                if (response.data.success) {
 
+        let response = await axios.post(`${API_URL}/create`, variables, {withCredentials: true})      
                     setImages([...Images, response.data.image])
-                    props.refreshFunction([...Images, response.data.image])
+                    
 
-                } else {
-                    alert('Failed to save the Image in Server')
-                }
-            })
+                
+            
     }
 
 
@@ -37,7 +42,7 @@ function ImageUpload(props) {
         newImages.splice(currentIndex, 1)
 
         setImages(newImages)
-        props.refreshFunction(newImages)
+        
     }
 
     return (
@@ -57,7 +62,7 @@ function ImageUpload(props) {
                         {console.log('getRootProps', { ...getRootProps() })}
                         {console.log('getInputProps', { ...getInputProps() })}
                         <input {...getInputProps()} />
-                        <Icon type="plus" style={{ fontSize: '3rem' }} />
+                        <PlusOutlined style={{ fontSize: '3rem' }} />
 
                     </div>
                 )}

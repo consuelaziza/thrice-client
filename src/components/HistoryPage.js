@@ -17,7 +17,7 @@ function HistoryPage() {
                     <tr>
                         <th>Payment Id</th>
                         <th>Price</th>
-                        <th>Date of Purchase</th>
+                        {/* <th>Date of Purchase</th> backlog*/}
                     </tr>
                 </thead>
 

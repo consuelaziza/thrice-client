@@ -4,11 +4,12 @@ Signup: As an anon I can sign up in the platform so that I can start adding my o
 Login: As a user I can login to the platform so that I can see my favorite closets
 Logout: As a user I can logout from the platform so no one else can use it
 Add sell items: As a user I can add an item so that I can sell it
-List of other members/items: As a user I want to see the other closets so that I can choose one I want to purchase from
+
 
 
 
 Backlog
+List of other members/items: As a user I want to see the other closets so that I can choose one I want to purchase from
 Search other users: As a user I want to search other closets by catagory 
 Add to favorites: As a user I want to add other users to favorite(or follow) so that I can go back to that users closet.
 User profile:

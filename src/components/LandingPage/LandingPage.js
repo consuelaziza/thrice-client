@@ -5,6 +5,8 @@ import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import { categories, price } from './Sections/Datas';
 import SearchFeature from './Sections/SearchFeature';
+import { Link } from 'react-router-dom'
+import {API_URL} from '../../config'
 
 
 const { Meta } = Card;
@@ -18,7 +20,7 @@ function LandingPage() {
     const [SearchTerms, setSearchTerms] = useState("")
 
     const [Filters, setFilters] = useState({
-        continents: [],
+        categories: [],
         price: []
     })
 
@@ -34,7 +36,7 @@ function LandingPage() {
     }, [])
 
     const getProducts = (variables) => {
-        axios.post('/api/product/getProducts', variables)
+        axios.post(`${API_URL}/product/getProducts`, variables, {withCredentials: true})
             .then(response => {
                 if (response.data.success) {
                     if (variables.loadMore) {
@@ -69,7 +71,7 @@ function LandingPage() {
         return <Col lg={6} md={8} xs={24}>
             <Card
                 hoverable={true}
-                 cover={<a href={`/product/${product._id}`}>Image</a>}
+                 cover={<Link to={`/product/${product._id}`}>Image</Link>}
             >
                 <Meta
                     title={product.title}
@@ -160,7 +162,7 @@ function LandingPage() {
                 <Col lg={12} xs={24}>
                     <RadioBox
                         list={price}
-                        handleFilters={filters => handleFilters(filters, "price")}
+                         handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
             </Row>
@@ -170,7 +172,7 @@ function LandingPage() {
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
                 <SearchFeature
-                    refreshFunction={updateSearchTerms}
+                     refreshFunction={updateSearchTerms}
                 />
 
             </div>
@@ -194,7 +196,7 @@ function LandingPage() {
 
             {PostSize >= Limit &&
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={onLoadMore}>Load More</button>
+                    {/* <button onClick={onLoadMore}>Load More</button> */}
                 </div>
             }
 

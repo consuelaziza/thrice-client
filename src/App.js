@@ -9,7 +9,7 @@ import {useNavigate } from 'react-router-dom';
 import Footer from './components/Footer';
 import LandingPage from './components/LandingPage/LandingPage'
 import NavBar from './components/NavBar/NavBar';
-import UploadItem from './components/UploadItem'
+import UploadItem from './components/AddImageForm/UploadItem'
 import DetailProductPage from './components/DetailProductPage/DetailProductPage'
 import CartPage from './components/CartPage'
 import HistoryPage from './components/HistoryPage'
@@ -71,25 +71,25 @@ function App(){
     }
   }
 
-  const handleLogout = async () => {
-    await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
-    setUser(null)
-}
+//   const handleLogout = async () => {
+//     await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
+//     setUser(null)
+// }
 
   useEffect(() => {
     navigate('/')
   }, [products, user])
 
   // Wait for the '/api/user' request to finish so that we know if the user is loggedin or not
-   if (fetchingUser) {
-    return <p>Loading user info. . . </p>
-  }
+  //  if (fetchingUser) {
+  //   return <p>Loading user info. . . </p>
+  // }
   
 
   
 	return (
    <div>
-    <NavBar onLogout={handleLogout}/>
+    <NavBar />
 		<div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
       
    

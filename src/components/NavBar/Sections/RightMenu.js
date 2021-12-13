@@ -1,16 +1,34 @@
 import React from 'react';
 import { Menu, Badge } from 'antd';
 import {Link} from  'react-router-dom'
-import {useContext} from 'react';
-import {UserContext} from '../../../context/app.context.js'
+//import {useContext} from 'react';
+//import {UserContext} from '../../../context/app.context.js'
 import {ShoppingCartOutlined} from '@ant-design/icons'
+import {API_URL} from '../../../config'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function RightMenu(props) {
-  const {user} = useContext(UserContext)
+  //const {user} = useContext(UserContext)
+  const navigate = useNavigate()
 
+  const logoutHandler = async () => {
+     await axios.get(`${API_URL}/logout`).then(response => {
+      if (response.status === 204) {
+        navigate("/signin");
+      } else {
+        alert('Log Out Failed')
+      }
+    });
+  };
+
+//   const handleLogout = async () => {
+//     await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
+//     setUser(null)
+// }
   
 
-  if (user) {
+  if (!props.user) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="signin">
@@ -43,11 +61,11 @@ function RightMenu(props) {
 
 
         <Menu.Item key="logout">
-          <Link to="/signin" onClick={props.onLogout}>Logout</Link>
+          <Link to="/signin" onClick={logoutHandler}>Logout</Link>
         </Menu.Item>
       </Menu>
     )
   }
 }
 
-export default RightMenu
+export default RightMenu;
