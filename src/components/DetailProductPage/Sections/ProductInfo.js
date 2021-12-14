@@ -5,11 +5,7 @@ function ProductInfo(props) {
 
     const [Product, setProduct] = useState({})
 
-    useEffect(() => {
-
-        setProduct(props.detail)
-
-    }, [props.detail])
+    
 
     
 

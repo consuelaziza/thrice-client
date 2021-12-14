@@ -71,7 +71,7 @@ function LandingPage() {
         return <Col lg={6} md={8} xs={24}>
             <Card
                 hoverable={true}
-                 cover={<Link to={`/product/${product._id}`}>Image</Link>}
+                 cover={<Link to={`/product/${product._id}`} images={product.images}>Image</Link>}
             >
                 <Meta
                     title={product.title}
@@ -196,7 +196,7 @@ function LandingPage() {
 
             {PostSize >= Limit &&
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    {/* <button onClick={onLoadMore}>Load More</button> */}
+                    <button onClick={onLoadMore}>Load More</button>
                 </div>
             }
 

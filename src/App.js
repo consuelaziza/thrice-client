@@ -16,6 +16,7 @@ import HistoryPage from './components/HistoryPage'
 
 
 
+
 function App(){
 
   const [products, setProducts] = useState([])
@@ -25,6 +26,31 @@ function App(){
   const [fetchingUser, setFetchingUser] = useState(true)
 
   const navigate = useNavigate()
+
+  // const onDrop = async (event) => {
+
+  //   let imageForm = new FormData()
+  //     imageForm.append('imageUrl', event.target.myImage.files[0])
+       
+  //       let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+  //       console.log(imgResponse.data)
+
+  //       const variables = {
+  //           writer: event.target._id.value,
+  //           title: event.target.title.value,
+  //           description: event.target.description.value,
+  //           images: imgResponse.data.images.value,
+  //           categories: event.target.categories.value,
+  //           price: event.target.price.value
+  //       }
+
+  //       let response = await axios.post(`${API_URL}/create`, variables, {withCredentials: true})      
+  //                   setImages([...Images, response.data.image])
+                    
+
+                
+            
+  //   }
 
   useEffect(() => {
 
@@ -71,10 +97,10 @@ function App(){
     }
   }
 
-//   const handleLogout = async () => {
-//     await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
-//     setUser(null)
-// }
+  const handleLogout = async () => {
+    await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
+    setUser(null)
+}
 
   useEffect(() => {
     navigate('/')
@@ -85,11 +111,11 @@ function App(){
   //   return <p>Loading user info. . . </p>
   // }
   
-
+  console.log(user)
   
 	return (
    <div>
-    <NavBar />
+    <NavBar user={user} onLogout={handleLogout}/>
 		<div style={{ paddingTop: '75px', minHeight: 'calc(100vh - 80px)' }}>
       
    

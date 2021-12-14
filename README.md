@@ -122,6 +122,7 @@ Server repository Link
 https://github.com/consuelaziza/thrice-server
 
 Deploy Link
+https://thrice-final.herokuapp.com/
 
 Slides
 The url to your presentation slides

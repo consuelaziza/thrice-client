@@ -6,8 +6,9 @@ import './Sections/Navbar.css';
 import {AlignRightOutlined} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
 
-function NavBar() {
+function NavBar(props) {
   const [visible, setVisible] = useState(false)
+  const {user} = props
 
   const showDrawer = () => {
     setVisible(true)
@@ -29,7 +30,7 @@ function NavBar() {
           <LeftMenu mode="horizontal" />
         </div>
         <div className="menu_right">
-          <RightMenu mode="horizontal" />
+          <RightMenu mode="horizontal" user={user} onClick={props.onLogout}/>
         </div>
         <Button
           className="menu__mobile-button"

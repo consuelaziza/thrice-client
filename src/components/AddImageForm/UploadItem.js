@@ -18,10 +18,10 @@ function UploadItem(props) {
 
     let navigate = useNavigate()
 
-    const [TitleValue, setTitleValue] = useState("")
-    const [DescriptionValue, setDescriptionValue] = useState("")
-    const [PriceValue, setPriceValue] = useState(0)
-    const [CategoriesValue, setCategoriesValue] = useState(1)
+    const [titleValue, setTitleValue] = useState("")
+    const [descriptionValue, setDescriptionValue] = useState("")
+    const [priceValue, setPriceValue] = useState(0)
+    const [categoriesValue, setCategoriesValue] = useState(1)
 
     const [Images, setImages] = useState([])
 
@@ -49,18 +49,18 @@ function UploadItem(props) {
         event.preventDefault();
 
 
-        if (!TitleValue || !DescriptionValue || !PriceValue ||
-            !CategoriesValue || !Images) {
+        if (!titleValue || !descriptionValue || !priceValue ||
+            !categoriesValue || !Images) {
             return alert('fill all the fields first!')
         }
 
         const variables = {
             
-            title: TitleValue,
-            description: DescriptionValue,
-            price: PriceValue,
+            title: titleValue,
+            description: descriptionValue,
+            price: priceValue,
             images: Images,
-            categories: CategoriesValue,
+            categories: categoriesValue,
         }
 
        let response= await axios.post('{API_URL}/product/create', variables, {withCredentials: true})
@@ -83,32 +83,32 @@ function UploadItem(props) {
             <Form onSubmit={onSubmit} >
 
                 {/* DropZone */}
-                <ImageUpload refreshFunction={updateImages} />
+                <ImageUpload refreshFunction={updateImages} type="file"  name="myImage"  accept="image/png, image/jpg"/>
 
                 <br />
                 <br />
                 <label>Title</label>
                 <Input
                     onChange={onTitleChange}
-                    value={TitleValue}
+                    value={titleValue}
                 />
                 <br />
                 <br />
                 <label>Description</label>
                 <TextArea
                     onChange={onDescriptionChange}
-                    value={DescriptionValue}
+                    value={descriptionValue}
                 />
                 <br />
                 <br />
                 <label>Price($)</label>
                 <Input
                     onChange={onPriceChange}
-                    value={PriceValue}
+                    value={priceValue}
                     type="number"
                 />
                 <br /><br />
-                <select onChange={onCategoriesSelectChange} value={CategoriesValue}>
+                <select onChange={onCategoriesSelectChange} value={categoriesValue}>
                     {Categories.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
                     ))}

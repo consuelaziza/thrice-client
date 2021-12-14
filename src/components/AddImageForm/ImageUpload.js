@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Dropzone from 'react-dropzone';
+// import Dropzone from 'react-dropzone';
 import  {PlusOutlined}  from '@ant-design/icons';
 import axios from 'axios';
 import {API_URL} from '../../config'
@@ -18,12 +18,12 @@ function ImageUpload(props) {
         console.log(imgResponse.data)
 
         const variables = {
-            writer: event.target._id,
-            title: event.target.title,
-            description: event.target.description,
-            images: imgResponse.data.images,
-            categories: event.target.categories,
-            price: event.target.price
+            writer: event.target._id.value,
+            title: event.target.title.value,
+            description: event.target.description.value,
+            images: imgResponse.data.images.value,
+            categories: event.target.categories.value,
+            price: event.target.price.value
         }
 
         let response = await axios.post(`${API_URL}/create`, variables, {withCredentials: true})      
@@ -47,26 +47,27 @@ function ImageUpload(props) {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Dropzone
+            {/* <Dropzone
                 onDrop={onDrop}
                 multiple={false}
                 maxSize={800000000}
-            >
-                {({ getRootProps, getInputProps }) => (
+            > */}
+                {/* {({ getRootProps, getInputProps }) => ( */}
                     <div style={{
                         width: '300px', height: '240px', border: '1px solid lightgray',
                         display: 'flex', alignItems: 'center', justifyContent: 'center'
                     }}
-                        {...getRootProps()}
+                        // {...getRootProps()}
                     >
-                        {console.log('getRootProps', { ...getRootProps() })}
-                        {console.log('getInputProps', { ...getInputProps() })}
-                        <input {...getInputProps()} />
+                        {/* {console.log('getRootProps', { ...getRootProps() })}
+                        {console.log('getInputProps', { ...getInputProps() })} */}
+                        {/* //<input {...getInputProps()} type="file"  name="myImage"  accept="image/png, image/jpg"/> */}
+                        <input type="file"  name="myImage"  accept="image/png, image/jpg"/>
                         <PlusOutlined style={{ fontSize: '3rem' }} />
 
                     </div>
-                )}
-            </Dropzone>
+                {/* )} */}
+            {/* </Dropzone> */}
 
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll' }}>
 

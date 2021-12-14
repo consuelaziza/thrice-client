@@ -1,32 +1,15 @@
 import React from 'react';
 import { Menu, Badge } from 'antd';
-import {Link} from  'react-router-dom'
-//import {useContext} from 'react';
-//import {UserContext} from '../../../context/app.context.js'
-import {ShoppingCartOutlined} from '@ant-design/icons'
-import {API_URL} from '../../../config'
+import {Link} from  'react-router-dom';
+import {ShoppingCartOutlined} from '@ant-design/icons';
+import {API_URL} from '../../../config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UploadOutlined } from '@ant-design/icons';
 
 function RightMenu(props) {
-  //const {user} = useContext(UserContext)
-  const navigate = useNavigate()
-
-  const logoutHandler = async () => {
-     await axios.get(`${API_URL}/logout`).then(response => {
-      if (response.status === 204) {
-        navigate("/signin");
-      } else {
-        alert('Log Out Failed')
-      }
-    });
-  };
-
-//   const handleLogout = async () => {
-//     await axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
-//     setUser(null)
-// }
-  
+ 
+  console.log("in right menu", props.user)
 
   if (!props.user) {
     return (
@@ -48,7 +31,7 @@ function RightMenu(props) {
         </Menu.Item>
 
         <Menu.Item key="upload">
-          <Link to="/product/upload">Upload</Link>
+          <Link to="/product/upload"><UploadOutlined /></Link>
         </Menu.Item>
 
         <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
@@ -61,7 +44,7 @@ function RightMenu(props) {
 
 
         <Menu.Item key="logout">
-          <Link to="/signin" onClick={logoutHandler}>Logout</Link>
+          <Link to="/signin" onClick={props.onLogout}>Logout</Link>
         </Menu.Item>
       </Menu>
     )

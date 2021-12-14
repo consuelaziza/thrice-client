@@ -3,10 +3,10 @@ import axios from 'axios'
 import { Row, Col } from 'antd';
 import ProductImage from './Sections/ProductImage';
 import ProductInfo from './Sections/ProductInfo';
-//import {useParams} from 'react-router-dom'
 import {API_URL} from '../../config'
 import { useContext } from 'react';
 import { UserContext } from '../../context/app.context';
+import { useParams } from 'react-router-dom';
 
 
 
@@ -15,7 +15,7 @@ import { UserContext } from '../../context/app.context';
     function DetailProductPage(props) {
 
     const {user} = useContext(UserContext)
-    const {productId} = props.match.params.productId
+    const {productId} = useParams
     const [Product, setProduct] = useState([])
 
     useEffect(() => {
@@ -40,10 +40,10 @@ import { UserContext } from '../../context/app.context';
 
             <Row gutter={[16, 16]} >
                 <Col lg={12} xs={24}>   
-                    <ProductImage  />
+                    <ProductImage detail={Product} />
                 </Col>
                 <Col lg={12} xs={24}>
-                    <ProductInfo
+                    <ProductInfo detail={Product} 
                          />
                 </Col>
             </Row>
