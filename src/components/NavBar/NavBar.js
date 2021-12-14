@@ -5,6 +5,7 @@ import { Drawer, Button,  } from 'antd';
 import './Sections/Navbar.css';
 import {AlignRightOutlined} from '@ant-design/icons'
 import {Link} from 'react-router-dom'
+import Logo from './Sections/thrice_logo_image.png'
 
 function NavBar(props) {
   const [visible, setVisible] = useState(false)
@@ -22,7 +23,7 @@ function NavBar(props) {
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
       <div className="menu__logo a">
-        <Link to="/">Thrice</Link>
+        <Link to="/" ><img src={Logo} /></Link>
         </div> 
       </div>
       <div className="menu__container">
