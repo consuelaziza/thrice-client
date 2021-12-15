@@ -2,9 +2,6 @@ import React from 'react';
 import { Menu, Badge } from 'antd';
 import {Link} from  'react-router-dom';
 import {ShoppingCartOutlined} from '@ant-design/icons';
-import {API_URL} from '../../../config';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { UploadOutlined } from '@ant-design/icons';
 
 function RightMenu(props) {

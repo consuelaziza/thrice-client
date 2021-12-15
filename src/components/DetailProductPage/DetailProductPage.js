@@ -15,12 +15,15 @@ import { useParams } from 'react-router-dom';
     function DetailProductPage(props) {
 
     const {user} = useContext(UserContext)
-    const {productId} = useParams
-    const [Product, setProduct] = useState([])
+    const {productId} = useParams()
+    const [product, setProduct] = useState([])
+
+    const {btnDelete} = props
 
     useEffect(() => {
         const getData = async () => {
         let response = await axios.get(`${API_URL}/product/${productId}`,{withCredentials: true})
+               console.log(response.data)
                 setProduct(response.data)
             }
             getData()
@@ -33,17 +36,18 @@ import { useParams } from 'react-router-dom';
         <div className="postPage" style={{ width: '100%', padding: '3rem 4rem' }}>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>title</h1>
+                <h1>{product.title}</h1>
             </div>
 
             <br />
 
             <Row gutter={[16, 16]} >
                 <Col lg={12} xs={24}>   
-                    <ProductImage detail={Product} />
+                    product
                 </Col>
                 <Col lg={12} xs={24}>
-                    <ProductInfo detail={Product} 
+                {console.log(product)}
+                    <ProductInfo  btnDelete={btnDelete} detail={product} 
                          />
                 </Col>
             </Row>

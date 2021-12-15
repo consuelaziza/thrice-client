@@ -14,6 +14,8 @@ import DetailProductPage from './components/DetailProductPage/DetailProductPage'
 import CheckoutForm from './components/CheckoutForm'
 import HistoryPage from './components/HistoryPage'
 import AboutPage from './components/AboutPage'
+import EditProductPage from './components/EditProductPage'
+import NotFoundPage from './components/NotFoundPage'
 
 
 
@@ -69,10 +71,10 @@ let {title, description, price, stuff} = event.target
        let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
          console.log(imgResponse.data)
 
-       /* if (!title.value || !description.value || !price.value ||
+        if (!title.value || !description.value || !price.value ||
             !stuff.value ) {
             return alert('fill all the fields first!')
-        }*/
+        }
 
         const variables = {
             
@@ -90,36 +92,38 @@ let {title, description, price, stuff} = event.target
             
     }
 
-  // const onDrop = async (event) => {
 
-  //   let imageForm = new FormData()
-  //     imageForm.append('imageUrl', event.target.myImage.files[0])
-       
-  //       let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
-  //       console.log(imgResponse.data)
+  const handleEdit = async (event, id) => {
+      event.preventDefault()
+      let editedProducts = {
+        title: event.target.title.value,
+        description: event.target.description.value,
+        completed: false,
+      }
+      // Pass an object as a 2nd param in POST requests
+      let response = await axios.patch(`${API_URL}/product/${id}`, editedProducts, {withCredentials: true})
+      // Update our state 'products' with the edited product so that the user see the upadted info without refrshing the page
 
-  //       const variables = {
-  //           writer: event.target._id.value,
-  //           title: event.target.title.value,
-  //           description: event.target.description.value,
-  //           images: imgResponse.data.images.value,
-  //           categories: event.target.categories.value,
-  //           price: event.target.price.value
-  //       }
+      // We have the updated product here
+      console.log(response.data)
 
-  //       let response = await axios.post(`${API_URL}/create`, variables, {withCredentials: true})      
-  //                   setImages([...Images, response.data.image])
-                    
+      let updatedProducts = products.map((elem) => {
+          if (elem._id == id) {
+              elem.title = response.data.title
+              elem.description = response.data.description
+          }
+          return elem
+      })
 
-                
-            
-  //   }
+      setProducts(updatedProducts)
+      
+  }
 
   const handleDelete = async (id) => {
     // make a request to the server to delete it from the database
     await axios.delete(`${API_URL}/products/${id}`)
 
-    // Update your state 'todos' and remove the todo that was deleted
+    // Update your state 'products' and remove the product that was deleted
     let filteredProducts = products.filter((elem) => {
       return elem._id !== id
     })
@@ -176,10 +180,12 @@ let {title, description, price, stuff} = event.target
       <Route path="/signin" element={<SignIn myError={myError} onSignIn={handleSignIn} />}/>
       <Route path="/signup" element={<SignUp />}/>
       <Route path="/product/upload" element={<UploadItem submit={createProduct}/>} />
-      <Route path="/product/:productId" element={<DetailProductPage />} />
+      <Route path="/product/:productId" element={<DetailProductPage btnDelete={handleDelete}/>} />
+      <Route path="/product/:productId/edit" element={<EditProductPage btnEdit={handleEdit}/>} />
       <Route path="/user/cart" element={<CheckoutForm />} />
       <Route path="/history" element={<HistoryPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="*" element={NotFoundPage} />
 
       </Routes>
       

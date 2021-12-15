@@ -23,7 +23,7 @@ function NavBar(props) {
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
       <div className="menu__logo">
       <div className="menu__logo a">
-        <Link to="/" ><img src={Logo} style={{ minWidth: '50px', width: '85px', height: '45' }}/></Link>
+        <Link to="/" ><img src={Logo} alt='logo' style={{ minWidth: '50px', width: '85px', height: '45' }}/></Link>
         </div> 
       </div>
       <div className="menu__container">
@@ -37,6 +37,7 @@ function NavBar(props) {
           className="menu__mobile-button"
           type="primary"
           onClick={showDrawer}
+          style={{ borderColor: "#F2789F" }}
         >
            <AlignRightOutlined /> 
         </Button>

@@ -80,6 +80,7 @@ function SignUp(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              style={{ borderColor: "#F2789F" }}
             >
               Sign Up
             </Button>

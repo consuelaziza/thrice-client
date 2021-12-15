@@ -13,6 +13,7 @@ const { Meta } = Card;
 
 function LandingPage(props) {
 
+    const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState()
@@ -23,18 +24,15 @@ function LandingPage(props) {
         price: []
     })
 
-    /*useEffect(() => {
-
+    useEffect(() => {
         const variables = {
             skip: Skip,
             limit: Limit,
         }
-
         getProducts(variables)
+    }, [])
 
-    }, [])*/
-
-   /* const getProducts = (variables) => {
+   const getProducts = (variables) => {
         axios.post(`${API_URL}/product/getProducts`, variables, {withCredentials: true})
             .then(response => {
                 if (response.data.success) {
@@ -49,10 +47,8 @@ function LandingPage(props) {
                 }
             })
     }
-
     const onLoadMore = () => {
         let skip = Skip + Limit;
-
         const variables = {
             skip: skip,
             limit: Limit,
@@ -62,7 +58,7 @@ function LandingPage(props) {
         }
         getProducts(variables)
         setSkip(skip)
-    }*/
+    }
 
 
     const renderCards = props.products.map((product, index) => {
@@ -71,9 +67,10 @@ function LandingPage(props) {
         <Link to={`/product/${product._id}`}>
             <Card
                 hoverable={true}
-                 cover={<Link to={`/product/${product._id}`} images={product.images}>Image</Link>}
+                style={{ width: 240 }}
+                 cover={<Link to={`/product/${product._id}`} images={product.images}><img src={product.images} /></Link>}
             >
-            <img src={product.images} />
+            {/* <img src={product.images} /> */}
                 <Meta
                     title={product.title}
                     description={`$${product.price}`}
@@ -84,25 +81,19 @@ function LandingPage(props) {
     })
 
 
-   /* const showFilteredResults = (filters) => {
-
+    const showFilteredResults = (filters) => {
         const variables = {
             skip: 0,
             limit: Limit,
             filters: filters
-
         }
         getProducts(variables)
         setSkip(0)
-
     }
-
     const handlePrice = (value) => {
         const data = price;
         let array = [];
-
         for (let key in data) {
-
             if (data[key]._id === parseInt(value, 10)) {
                 array = data[key].array;
             }
@@ -110,45 +101,34 @@ function LandingPage(props) {
         console.log('array', array)
         return array
     }
-
     const handleFilters = (filters, category) => {
-
         const newFilters = { ...Filters }
-
         newFilters[category] = filters
-
         if (category === "price") {
             let priceValues = handlePrice(filters)
             newFilters[category] = priceValues
-
         }
-
         console.log(newFilters)
-
         showFilteredResults(newFilters)
         setFilters(newFilters)
     }
-
     const updateSearchTerms = (newSearchTerm) => {
-
         const variables = {
             skip: 0,
             limit: Limit,
             filters: Filters,
             searchTerm: newSearchTerm
         }
-
         setSkip(0)
         setSearchTerms(newSearchTerm)
-
         getProducts(variables)
-    }*/
+    }
 
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>  Let's Thrice!    </h2>
+                <h2>  Let's Thrice!  </h2>
             </div>
 
 
@@ -158,15 +138,15 @@ function LandingPage(props) {
                 <Col lg={12} xs={24} >
                     <CheckBox
                         style={{ borderColor: "#F2789F" }}
-                        //list={categories}
-                        //handleFilters={filters => handleFilters(filters, "categories")}
+                        list={categories}
+                        handleFilters={filters => handleFilters(filters, "categories")}
                     />
                 </Col>
                 <Col lg={12} xs={24}>
                     <RadioBox
                          style={{ borderColor: "#F2789F" }}
-                         //list={price}
-                         //handleFilters={filters => handleFilters(filters, "price")}
+                         list={price}
+                         handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
             </Row>
@@ -175,9 +155,7 @@ function LandingPage(props) {
             {/* Search  */}
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
-                <SearchFeature
-                     //refreshFunction={updateSearchTerms}
-                />
+               
 
             </div>
 
@@ -197,13 +175,6 @@ function LandingPage(props) {
                 </div>
             }
             <br /><br />
-
-            {PostSize >= Limit &&
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    {/*<button onClick={onLoadMore}>Load More</button>*/}
-                    <button>Load More</button>
-                </div>
-            }
 
 
         </div>
