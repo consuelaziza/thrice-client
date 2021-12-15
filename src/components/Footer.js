@@ -1,4 +1,5 @@
 import React from 'react'
+import { RobotOutlined } from '@ant-design/icons'
 
 
 function Footer() {
@@ -8,7 +9,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Happy Thricing  </p> 
+           <p> Happy Thricing <RobotOutlined /> </p> 
         </div>
     )
 }

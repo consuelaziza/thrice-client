@@ -11,8 +11,9 @@ import LandingPage from './components/LandingPage/LandingPage'
 import NavBar from './components/NavBar/NavBar';
 import UploadItem from './components/AddImageForm/UploadItem'
 import DetailProductPage from './components/DetailProductPage/DetailProductPage'
-import CartPage from './components/CartPage'
+import CheckoutForm from './components/CheckoutForm'
 import HistoryPage from './components/HistoryPage'
+import AboutPage from './components/AboutPage'
 
 
 
@@ -26,6 +27,68 @@ function App(){
   const [fetchingUser, setFetchingUser] = useState(true)
 
   const navigate = useNavigate()
+
+useEffect(() => {
+
+    const getData = async () => {
+        let response  = await axios.get(`${API_URL}/product`,{withCredentials: true})
+        setProducts(response.data)
+        
+
+        // -----------------------------------------------
+        // we make the user requst here to know if the user is logged in or not
+          
+        // -----------------------------------------------
+
+    }
+    const getUserData = async () => {
+          let userResponse = await axios.get(`${API_URL}/user`,{withCredentials: true})
+          try {
+          setFetchingUser(false)
+          setUser(userResponse.data)
+        }
+        catch(err){
+          // the request will fail if the user is not logged in 
+          setFetchingUser(false)
+        }
+    }
+
+    getData()
+    getUserData()
+
+}, [])
+
+const createProduct = async (event) => {
+        event.preventDefault();
+console.log(event.target.title.value)
+
+let {title, description, price, stuff} = event.target
+       let imageForm = new FormData()
+       imageForm.append('imageUrl', event.target.myImage.files[0])
+       
+       let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+         console.log(imgResponse.data)
+
+       /* if (!title.value || !description.value || !price.value ||
+            !stuff.value ) {
+            return alert('fill all the fields first!')
+        }*/
+
+        const variables = {
+            
+            title: title.value,
+            description: description.value,
+            price:price.value,
+            images: imgResponse.data.image,
+            categories: stuff.value,
+        }
+
+       let response= await axios.post(`${API_URL}/create`, variables, {withCredentials: true})
+               
+                    setProducts([response.data, ...products])
+
+            
+    }
 
   // const onDrop = async (event) => {
 
@@ -52,30 +115,19 @@ function App(){
             
   //   }
 
-  useEffect(() => {
+  const handleDelete = async (id) => {
+    // make a request to the server to delete it from the database
+    await axios.delete(`${API_URL}/products/${id}`)
 
-    const getData = async () => {
-        let response  = await axios.get(`${API_URL}/product`,{withCredentials: true})
-        setProducts(response.data)
+    // Update your state 'todos' and remove the todo that was deleted
+    let filteredProducts = products.filter((elem) => {
+      return elem._id !== id
+    })
 
-        // -----------------------------------------------
-        // we make the user requst here to know if the user is logged in or not
-        try {
-          let userResponse = await axios.get(`${API_URL}/user`,{withCredentials: true})
-          setFetchingUser(false)
-          setUser(userResponse.data)
-        }
-        catch(err){
-          // the request will fail if the user is not logged in 
-          setFetchingUser(false)
-        }
-        // -----------------------------------------------
+    setProducts(filteredProducts)
+  }
 
-    }
-
-    getData()
-
-}, [])
+  
 
   const handleSignIn = async (event) => {
     event.preventDefault()
@@ -102,9 +154,9 @@ function App(){
     setUser(null)
 }
 
-  useEffect(() => {
+ /* useEffect(() => {
     navigate('/')
-  }, [products, user])
+  }, [products, user])*/
 
   // Wait for the '/api/user' request to finish so that we know if the user is loggedin or not
   //  if (fetchingUser) {
@@ -123,10 +175,12 @@ function App(){
       <Route path="/" element={<LandingPage products={products} /> } />
       <Route path="/signin" element={<SignIn myError={myError} onSignIn={handleSignIn} />}/>
       <Route path="/signup" element={<SignUp />}/>
-      <Route path="/product/upload" element={<UploadItem />} />
+      <Route path="/product/upload" element={<UploadItem submit={createProduct}/>} />
       <Route path="/product/:productId" element={<DetailProductPage />} />
-      <Route path="/user/cart" element={<CartPage />} />
+      <Route path="/user/cart" element={<CheckoutForm />} />
       <Route path="/history" element={<HistoryPage />} />
+      <Route path="/about" element={<AboutPage />} />
+
       </Routes>
       
       </div>

@@ -11,9 +11,8 @@ import {API_URL} from '../../config'
 
 const { Meta } = Card;
 
-function LandingPage() {
+function LandingPage(props) {
 
-    const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
     const [PostSize, setPostSize] = useState()
@@ -24,7 +23,7 @@ function LandingPage() {
         price: []
     })
 
-    useEffect(() => {
+    /*useEffect(() => {
 
         const variables = {
             skip: Skip,
@@ -33,9 +32,9 @@ function LandingPage() {
 
         getProducts(variables)
 
-    }, [])
+    }, [])*/
 
-    const getProducts = (variables) => {
+   /* const getProducts = (variables) => {
         axios.post(`${API_URL}/product/getProducts`, variables, {withCredentials: true})
             .then(response => {
                 if (response.data.success) {
@@ -63,26 +62,29 @@ function LandingPage() {
         }
         getProducts(variables)
         setSkip(skip)
-    }
+    }*/
 
 
-    const renderCards = Products.map((product, index) => {
+    const renderCards = props.products.map((product, index) => {
 
         return <Col lg={6} md={8} xs={24}>
+        <Link to={`/product/${product._id}`}>
             <Card
                 hoverable={true}
                  cover={<Link to={`/product/${product._id}`} images={product.images}>Image</Link>}
             >
+            <img src={product.images} />
                 <Meta
                     title={product.title}
                     description={`$${product.price}`}
                 />
             </Card>
+            </Link>
         </Col>
     })
 
 
-    const showFilteredResults = (filters) => {
+   /* const showFilteredResults = (filters) => {
 
         const variables = {
             skip: 0,
@@ -140,13 +142,13 @@ function LandingPage() {
         setSearchTerms(newSearchTerm)
 
         getProducts(variables)
-    }
+    }*/
 
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'center' }}>
-                <h2>  Let's Thrift!    </h2>
+                <h2>  Let's Thrice!    </h2>
             </div>
 
 
@@ -155,14 +157,16 @@ function LandingPage() {
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24} >
                     <CheckBox
-                        list={categories}
-                        handleFilters={filters => handleFilters(filters, "categories")}
+                        style={{ borderColor: "#F2789F" }}
+                        //list={categories}
+                        //handleFilters={filters => handleFilters(filters, "categories")}
                     />
                 </Col>
                 <Col lg={12} xs={24}>
                     <RadioBox
-                        list={price}
-                         handleFilters={filters => handleFilters(filters, "price")}
+                         style={{ borderColor: "#F2789F" }}
+                         //list={price}
+                         //handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
             </Row>
@@ -172,13 +176,13 @@ function LandingPage() {
             <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
                 <SearchFeature
-                     refreshFunction={updateSearchTerms}
+                     //refreshFunction={updateSearchTerms}
                 />
 
             </div>
 
 
-            {Products.length === 0 ?
+            {props.products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>
                 </div> :
@@ -196,7 +200,8 @@ function LandingPage() {
 
             {PostSize >= Limit &&
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={onLoadMore}>Load More</button>
+                    {/*<button onClick={onLoadMore}>Load More</button>*/}
+                    <button>Load More</button>
                 </div>
             }
 

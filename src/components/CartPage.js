@@ -1,4 +1,7 @@
 import React from 'react'
+import StripeApp from './StripeApp'
+
+
 
 function CartPage() {
     return (
@@ -7,7 +10,8 @@ function CartPage() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-            <h1>Stripe Coming Soon</h1>
+            <h1> Total</h1>
+            <Sections><StripeApp /></Sections>
         </div>
     )
 }

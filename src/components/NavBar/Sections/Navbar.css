@@ -50,7 +50,7 @@
   padding: 6px;
   margin-top: 8px;
   display: none !important; /* use of important to overwrite ant-btn */
-  background: #f52e20;
+  background: #FEE3EC;
 }
 
 .menu_drawer .ant-drawer-body {

@@ -4,7 +4,7 @@ import ImageGallery from 'react-image-gallery';
 function ProductImage(props) {
     const [Images, setImages] = useState([])
 
-    useEffect(() => {
+   /*useEffect(() => {
         if (props.detail.images && props.detail.images.length > 0) {
             let images = [];
 
@@ -16,7 +16,7 @@ function ProductImage(props) {
             })
             setImages(images)
         }
-    }, [props.detail])
+    }, [props.detail])*/
 
     return (
         <div>

@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import { UploadOutlined } from '@ant-design/icons';
 
 function RightMenu(props) {
- 
-  console.log("in right menu", props.user)
 
   if (!props.user) {
     return (
-      <Menu mode={props.mode}>
+      <Menu 
+      mode={props.mode}
+      >
         <Menu.Item key="signin">
           <Link to="/signin">Signin</Link>
         </Menu.Item>
@@ -24,7 +24,9 @@ function RightMenu(props) {
     )
   } else {
     return (
-      <Menu mode={props.mode}>
+      <Menu 
+      mode={props.mode}
+      >
 
         <Menu.Item key="history">
           <Link to="/history">History</Link>
@@ -41,10 +43,13 @@ function RightMenu(props) {
             </Link>
           </Badge>
         </Menu.Item>
+         <Menu.Item key="about">
+          <Link to="/about">About</Link>
+        </Menu.Item>
 
 
         <Menu.Item key="logout">
-          <Link to="/signin" onClick={props.onLogout}>Logout</Link>
+          <Link to="/signin" style={{ borderColor: "#F2789F" }} onClick={props.onLogout}>Logout</Link>
         </Menu.Item>
       </Menu>
     )
