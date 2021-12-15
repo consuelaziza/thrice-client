@@ -42,9 +42,9 @@ import { useParams } from 'react-router-dom';
             <br />
 
             <Row gutter={[16, 16]} >
-                <Col lg={12} xs={24}>   
-                    product
-                </Col>
+                <div style={{ display: 'flex', justifyContent: 'center' , textAlign: 'center' }}>   
+                    {product.image}
+                </div>
                 <Col lg={12} xs={24}>
                 {console.log(product)}
                     <ProductInfo  btnDelete={btnDelete} detail={product} 

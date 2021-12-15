@@ -6,11 +6,11 @@ function AboutPage() {
         <div style={{ width: '80%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'left-align' }}>
                 <h1>About Thrice</h1>
-                <p>We are a community of Seamstresses/Seamsters and Tailors. 
+                <p>We are a community of Couturière and Couturier. 
                 <br />
-                This is also a place to by and sell clothes but our focus is 
+                This is also a place to buy and sell clothes but our focus is 
                 <br />
-                designed upcycled clothing</p>
+                designer upcycled clothing and accessories</p>
                 </div>
                 </div>
        
