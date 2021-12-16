@@ -15,11 +15,12 @@ function ProductInfo(props) {
     return (
         <div>
             {console.log(detail)}
-            <img src={detail.images}/>
-            <Descriptions title="Product Info">
+            <div style={{ display: 'flex', justifyContent: 'center' }}><img src={detail.images}/></div>
             
+            <Descriptions title="Product Info">
                 <Descriptions.Item label="Title"> {detail.title}</Descriptions.Item>
                 <Descriptions.Item label="Description"> {detail.description}</Descriptions.Item>
+                <Descriptions.Item label="Price"> {detail.price}</Descriptions.Item>
             </Descriptions>
             <br />
             <br />

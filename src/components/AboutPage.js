@@ -6,7 +6,7 @@ function AboutPage() {
         <div style={{ width: '80%', margin: '3rem auto' }}>
             <div style={{ textAlign: 'left-align' }}>
                 <h1>About Thrice</h1>
-                <p>We are a community of Couturière and Couturier. 
+                <p>We are a community of Couturières and Couturiers. 
                 <br />
                 This is also a place to buy and sell clothes but our focus is 
                 <br />

@@ -29,6 +29,7 @@ function UploadItem(props) {
 
                 {/* DropZone */}
                 <ImageUpload 
+                style={{ borderColor: "#F2789F" }}
                 type="file"  name="myImage"  accept="image/png, image/jpg"/>
 
                 <br />

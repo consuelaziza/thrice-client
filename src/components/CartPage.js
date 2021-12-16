@@ -6,13 +6,12 @@ import StripeApp from './StripeApp'
 function CartPage() {
     return (
         <div style={{
-            height: '80px', display: 'flex',
+            display: 'flex',
             flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', fontSize:'1rem'
+            justifyContent: 'center'
         }}>
-            <h1> Total</h1>
-            <div><StripeApp /></div>
-        </div>
+           <StripeApp /></div>
+        
     )
 }
 

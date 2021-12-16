@@ -24,41 +24,41 @@ function LandingPage(props) {
         price: []
     })
 
-    useEffect(() => {
-        const variables = {
-            skip: Skip,
-            limit: Limit,
-        }
-        getProducts(variables)
-    }, [])
+    // useEffect(() => {
+    //     const variables = {
+    //         skip: Skip,
+    //         limit: Limit,
+    //     }
+    //     getProducts(variables)
+    // }, [])
 
-   const getProducts = (variables) => {
-        axios.post(`${API_URL}/product/getProducts`, variables, {withCredentials: true})
-            .then(response => {
-                if (response.data.success) {
-                    if (variables.loadMore) {
-                        setProducts([...Products, ...response.data.products])
-                    } else {
-                        setProducts(response.data.products)
-                    }
-                    setPostSize(response.data.postSize)
-                } else {
-                    alert('Failed to get product data')
-                }
-            })
-    }
-    const onLoadMore = () => {
-        let skip = Skip + Limit;
-        const variables = {
-            skip: skip,
-            limit: Limit,
-            loadMore: true,
-            filters: Filters,
-            searchTerm: SearchTerms
-        }
-        getProducts(variables)
-        setSkip(skip)
-    }
+//    const getProducts = (variables) => {
+//         axios.post(`${API_URL}/product/getProducts`, variables, {withCredentials: true})
+//             .then(response => {
+//                 if (response.data.success) {
+//                     if (variables.loadMore) {
+//                         setProducts([...Products, ...response.data.products])
+//                     } else {
+//                         setProducts(response.data.products)
+//                     }
+//                     setPostSize(response.data.postSize)
+//                 } else {
+//                     alert('Failed to get product data')
+//                 }
+//             })
+//     }
+    // const onLoadMore = () => {
+    //     let skip = Skip + Limit;
+    //     const variables = {
+    //         skip: skip,
+    //         limit: Limit,
+    //         loadMore: true,
+    //         filters: Filters,
+    //         searchTerm: SearchTerms
+    //     }
+    //     getProducts(variables)
+    //     setSkip(skip)
+    // }
 
 
     const renderCards = props.products.map((product, index) => {
@@ -68,7 +68,7 @@ function LandingPage(props) {
             <Card
                 hoverable={true}
                 style={{ width: 240 }}
-                 cover={<Link to={`/product/${product._id}`} images={product.images}><img src={product.images} /></Link>}
+                 cover={<Link to={`/product/${product._id}`} ><img style={{ width: '100%', maxHeight: '100%' }} src={product.images} /> </Link>}
             >
             {/* <img src={product.images} /> */}
                 <Meta
@@ -81,15 +81,15 @@ function LandingPage(props) {
     })
 
 
-    const showFilteredResults = (filters) => {
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: filters
-        }
-        getProducts(variables)
-        setSkip(0)
-    }
+    // const showFilteredResults = (filters) => {
+    //     const variables = {
+    //         skip: 0,
+    //         limit: Limit,
+    //         filters: filters
+    //     }
+    //     getProducts(variables)
+    //     setSkip(0)
+    // }
     const handlePrice = (value) => {
         const data = price;
         let array = [];
@@ -109,20 +109,20 @@ function LandingPage(props) {
             newFilters[category] = priceValues
         }
         console.log(newFilters)
-        showFilteredResults(newFilters)
+        // showFilteredResults(newFilters)
         setFilters(newFilters)
     }
-    const updateSearchTerms = (newSearchTerm) => {
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: Filters,
-            searchTerm: newSearchTerm
-        }
-        setSkip(0)
-        setSearchTerms(newSearchTerm)
-        getProducts(variables)
-    }
+    // const updateSearchTerms = (newSearchTerm) => {
+    //     const variables = {
+    //         skip: 0,
+    //         limit: Limit,
+    //         filters: Filters,
+    //         searchTerm: newSearchTerm
+    //     }
+    //     setSkip(0)
+    //     setSearchTerms(newSearchTerm)
+    //     getProducts(variables)
+    // }
 
 
     return (

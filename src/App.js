@@ -90,7 +90,7 @@ let {title, description, price, stuff} = event.target
        let response= await axios.post(`${API_URL}/create`, variables, {withCredentials: true})
                
                     setProducts([response.data, ...products])
-
+                     navigate("/")
             
     }
 
