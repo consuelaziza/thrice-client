@@ -68,7 +68,7 @@ function LandingPage(props) {
             <Card
                 hoverable={true}
                 style={{ width: 240 }}
-                 cover={<Link to={`/product/${product._id}`} ><img style={{ width: '100%', maxHeight: '100%' }} src={product.images} /> </Link>}
+                 cover={<Link to={`/product/${product._id}`} ><img style={{ width: '100%', maxHeight: '50%' }} src={product.images} /> </Link>}
             >
             {/* <img src={product.images} /> */}
                 <Meta
@@ -112,17 +112,7 @@ function LandingPage(props) {
         // showFilteredResults(newFilters)
         setFilters(newFilters)
     }
-    // const updateSearchTerms = (newSearchTerm) => {
-    //     const variables = {
-    //         skip: 0,
-    //         limit: Limit,
-    //         filters: Filters,
-    //         searchTerm: newSearchTerm
-    //     }
-    //     setSkip(0)
-    //     setSearchTerms(newSearchTerm)
-    //     getProducts(variables)
-    // }
+   
 
 
     return (
@@ -165,7 +155,7 @@ function LandingPage(props) {
                     <h2>No post yet...</h2>
                 </div> :
                 <div>
-                    <Row gutter={[16, 16]}>
+                    <Row gutter={[8, 8]}>
 
                         {renderCards}
 

@@ -29,13 +29,13 @@ function ProductInfo(props) {
             <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}>
                 <Link to={`/product/${detail._id}/edit`} >Edit</Link>
             </Button>
-                <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}
+                <Button style={{ borderColor: "#F2789F", color: '#F9C5D5' }}
                 
                    onClick={() => { btnDelete(detail._id)  }  } 
                 >
                     Delete
                     </Button>
-                    <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}
+                    <Button style={{ borderColor: "#F2789F", color: '#F9C5D5' }}
                     onClick={addToCarthandler}
                     >Add to Cart</Button>
             </div>

@@ -24,29 +24,31 @@ function RightMenu(props) {
       <Menu 
       mode={props.mode}
       >
-
-        <Menu.Item key="history">
-          <Link to="/history">History</Link>
+        <Menu.Item key="upload">
+          <Link to="/product/upload" style={{color:'#F9C5D5'}}>Upload</Link>
         </Menu.Item>
 
-        <Menu.Item key="upload">
-          <Link to="/product/upload"><UploadOutlined /></Link>
+        <Menu.Item key="about">
+          <Link to="/about" style={{color:'#F9C5D5'}}>About</Link>
+        </Menu.Item>
+
+        <Menu.Item key="history">
+          <Link to="/history" style={{color:'#F9C5D5'}}>History</Link>
         </Menu.Item>
 
         <Menu.Item key="cart" style={{ paddingBottom: 3 }}>
           <Badge color='magenta'>
-            <Link to="/user/cart" style={{ marginRight: -22 , color:'#667777'}} >
-              <ShoppingCartOutlined style={{ fontSize: 30, marginBottom: 3 }}/>
+            <Link to="/user/cart" style={{ marginRight: -22 , color:'#F9C5D5'}} >
+            Cart
+              {/* <ShoppingCartOutlined style={{ fontSize: 30, marginBottom: 3 }}/> */}
             </Link>
           </Badge>
         </Menu.Item>
-         <Menu.Item key="about">
-          <Link to="/about">About</Link>
-        </Menu.Item>
+         
 
 
         <Menu.Item key="logout">
-          <Link to="/signin" style={{ borderColor: "#F2789F" }} onClick={props.onLogout}>Logout</Link>
+          <Link to="/signin" style={{ borderColor: "#F2789F", color:'#F9C5D5' }} onClick={props.onLogout}>Logout</Link>
         </Menu.Item>
       </Menu>
     )
