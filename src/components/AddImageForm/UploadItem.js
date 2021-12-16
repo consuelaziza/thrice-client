@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router';
 import './UploadItem.css'
 
+
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -28,10 +29,11 @@ function UploadItem(props) {
             <form onSubmit={props.submit} >
 
                 {/* DropZone */}
+                
                 <ImageUpload 
                 style={{ borderColor: "#F2789F" }}
                 type="file"  name="myImage"  accept="image/png, image/jpg"/>
-
+{/* <PlusOutlined /> */}
                 <br />
                 <br />
                 <label>Title</label>
@@ -39,6 +41,7 @@ function UploadItem(props) {
                 style={{ borderColor: "#F2789F" }}
                     name="title"
                 />
+                
                 <br />
                 <br />
                 <label>Description</label>
