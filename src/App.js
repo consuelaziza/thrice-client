@@ -16,6 +16,8 @@ import HistoryPage from './components/HistoryPage'
 import AboutPage from './components/AboutPage'
 import EditProductPage from './components/EditProductPage'
 import NotFoundPage from './components/NotFoundPage'
+import StripeApp from './components/StripeApp'
+import CartPage from './components/CartPage'
 
 
 
@@ -193,7 +195,7 @@ let {title, description, price, stuff} = event.target
       <Route path="/product/upload" element={<UploadItem submit={createProduct}/>} />
       <Route path="/product/:productId" element={<DetailProductPage btnDelete={handleDelete}/>} />
       <Route path="/product/:productId/edit" element={<EditProductPage btnEdit={handleEdit}/>} />
-      <Route path="/user/cart" element={<CheckoutForm />} />
+      <Route path="/user/cart" element={<StripeApp />} />
       <Route path="/history" element={<HistoryPage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="*" element={NotFoundPage} />

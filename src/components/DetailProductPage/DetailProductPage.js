@@ -30,6 +30,10 @@ import { useParams } from 'react-router-dom';
 
     }, [])
 
+    const addToCartHandler = (productId) => {
+        
+    }
+
   
 
     return (
@@ -47,7 +51,7 @@ import { useParams } from 'react-router-dom';
                 </div>
                 <Col lg={12} xs={24}>
                 {console.log(product)}
-                    <ProductInfo  btnDelete={btnDelete} detail={product} 
+                    <ProductInfo  btnDelete={btnDelete} detail={product} addToCart={addToCartHandler}
                          />
                 </Col>
             </Row>

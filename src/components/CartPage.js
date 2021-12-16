@@ -11,7 +11,7 @@ function CartPage() {
             justifyContent: 'center', fontSize:'1rem'
         }}>
             <h1> Total</h1>
-            <Sections><StripeApp /></Sections>
+            <div><StripeApp /></div>
         </div>
     )
 }

@@ -5,16 +5,14 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 
-
-
-export default function CheckoutForm(props) {
+export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (!stripe) {
       return;
     }
@@ -43,7 +41,7 @@ export default function CheckoutForm(props) {
           break;
       }
     });
-  }, [stripe]);*/
+  }, [stripe]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,9 +77,9 @@ export default function CheckoutForm(props) {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form className="checkout-form" id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button className="checkout-btn" disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>

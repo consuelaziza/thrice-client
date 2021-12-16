@@ -3,23 +3,24 @@ import { Button, Descriptions } from 'antd';
 import {Link} from 'react-router-dom'
 
 function ProductInfo(props) {
-
-    const [product, setProduct] = useState({})
-
     
-
     
 // const {btnDelete} = props
     const {btnDelete, detail} = props
 
+    const addToCarthandler = () => {
+        props.addToCart(props.detail._id)
+    }
+
     return (
         <div>
-            {console.log(product)}
+            {console.log(detail)}
+            <img src={detail.images}/>
             <Descriptions title="Product Info">
+            
                 <Descriptions.Item label="Title"> {detail.title}</Descriptions.Item>
                 <Descriptions.Item label="Description"> {detail.description}</Descriptions.Item>
             </Descriptions>
-            <img src={detail.images}/>
             <br />
             <br />
             <br />
@@ -33,6 +34,9 @@ function ProductInfo(props) {
                 >
                     Delete
                     </Button>
+                    <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}
+                    onClick={addToCarthandler}
+                    >Add to Cart</Button>
             </div>
         </div>
     )

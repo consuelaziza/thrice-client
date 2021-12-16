@@ -3,6 +3,7 @@ import { Typography, Button, Form, Input} from 'antd';
 import ImageUpload from './ImageUpload'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import './UploadItem.css'
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -68,10 +69,12 @@ function UploadItem(props) {
                 >
                     Submit
                 </button>
+                
 
             </form>
 
         </div>
+        
     )
 }
 
