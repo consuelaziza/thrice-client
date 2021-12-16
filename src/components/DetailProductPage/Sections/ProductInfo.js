@@ -19,17 +19,17 @@ function ProductInfo(props) {
                 <Descriptions.Item label="Title"> {detail.title}</Descriptions.Item>
                 <Descriptions.Item label="Description"> {detail.description}</Descriptions.Item>
             </Descriptions>
-
+            <img src={detail.images}/>
             <br />
             <br />
             <br />
             <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}>
-                <Link to={`/product/${product._id}/edit`} >Edit</Link>
+                <Link to={`/product/${detail._id}/edit`} >Edit</Link>
             </Button>
                 <Button style={{ borderColor: "#F2789F", color: 'F9C5D5' }}
                 
-                   onClick={() => { btnDelete(product._id)  }  } 
+                   onClick={() => { btnDelete(detail._id)  }  } 
                 >
                     Delete
                     </Button>

@@ -95,9 +95,17 @@ let {title, description, price, stuff} = event.target
 
   const handleEdit = async (event, id) => {
       event.preventDefault()
+
+      let imageForm = new FormData()
+       imageForm.append('imageUrl', event.target.myImage.files[0])
+       
+       let imgResponse = await axios.post(`${API_URL}/upload`, imageForm)
+         console.log(imgResponse.data)
+
       let editedProducts = {
         title: event.target.title.value,
         description: event.target.description.value,
+        images: imgResponse.data.image,
         completed: false,
       }
       // Pass an object as a 2nd param in POST requests
@@ -116,12 +124,14 @@ let {title, description, price, stuff} = event.target
       })
 
       setProducts(updatedProducts)
+      navigate("/")
       
   }
 
   const handleDelete = async (id) => {
+    console.log("its the id of the delete one", id)
     // make a request to the server to delete it from the database
-    await axios.delete(`${API_URL}/products/${id}`)
+    await axios.delete(`${API_URL}/product/${id}`)
 
     // Update your state 'products' and remove the product that was deleted
     let filteredProducts = products.filter((elem) => {
@@ -129,6 +139,7 @@ let {title, description, price, stuff} = event.target
     })
 
     setProducts(filteredProducts)
+    navigate("/")
   }
 
   

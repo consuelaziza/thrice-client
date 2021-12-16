@@ -50,7 +50,7 @@ function EditProductPage(props) {
             </div>
 
 
-            <form onSubmit={props.submit} >
+            <form onSubmit={(e) => props.btnEdit(e, productId)} >
 
                 
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
