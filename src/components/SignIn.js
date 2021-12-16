@@ -40,6 +40,7 @@ function SignIn(props) {
               name="email"
               autoComplete="email"
               autoFocus
+              style={{ borderColor: "#F2789F" }}
             />
             <TextField
               margin="normal"
@@ -52,19 +53,21 @@ function SignIn(props) {
               autoComplete="current-password"
               helperText={props.myError ? props.myError : '' }
               error={props.myError ? true: false}
+              style={{ borderColor: "#F2789F" }}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              style={{ borderColor: "#F2789F" }}
+              style={{ color: "#F999B7" , backgroundColor:"#FEE3EC"}}
+              
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/signup" >
+                <Link to="/signup"  style={{ color: "#F999B7" }}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

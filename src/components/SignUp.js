@@ -80,13 +80,13 @@ function SignUp(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              style={{ borderColor: "#F2789F" }}
+              style={{ color: "#F999B7" , backgroundColor:"#FEE3EC"}}
             >
               Sign Up
             </Button>
             <Grid container>
               <Grid item>
-                <Link to="/signin" >
+                <Link to="/signin" style={{ color: "#F999B7" }}>
                   {"Already have an account? Sign In instead"}
                 </Link>
               </Grid>

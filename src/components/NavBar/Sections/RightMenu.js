@@ -45,7 +45,7 @@ function RightMenu(props) {
           </Badge>
         </Menu.Item>
          
-
+      
 
         <Menu.Item key="logout">
           <Link to="/signin" style={{ borderColor: "#F2789F", color:'#F9C5D5' }} onClick={props.onLogout}>Logout</Link>
